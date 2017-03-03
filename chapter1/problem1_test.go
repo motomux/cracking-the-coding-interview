@@ -37,3 +37,34 @@ func TestIsUnique(t *testing.T) {
 		})
 	}
 }
+
+func TestIsUnique2(t *testing.T) {
+	tests := map[string]struct {
+		in  string
+		out bool
+	}{
+		"should return true if string contains only unique characters": {
+			in:  "world",
+			out: true,
+		},
+
+		"should return false if string contains duplicated characters": {
+			in:  "helloworld",
+			out: false,
+		},
+
+		"should return true if empty string is given": {
+			in:  "",
+			out: true,
+		},
+	}
+
+	for k, test := range tests {
+		t.Run(k, func(t *testing.T) {
+			out := IsUnique2(test.in)
+			if out != test.out {
+				t.Errorf("actual=%t expected=%t", out, test.out)
+			}
+		})
+	}
+}
