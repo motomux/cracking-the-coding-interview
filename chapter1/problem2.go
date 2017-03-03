@@ -31,3 +31,35 @@ func CheckPermutation(str1, str2 string) bool {
 
 	return true
 }
+
+// CheckPermutation2 checks given strings are permutation
+// It can check only lowercase of alphabet, otherwise result can be wrong
+// Time complexity O(n)
+// Space complexity O(1)
+func CheckPermutation2(str1, str2 string) bool {
+	if len(str1) != len(str2) {
+		return false
+	}
+
+	table := 0
+	for i := 0; i < len(str1); i++ {
+		c := str1[i]
+		if c < 'a' && 'z' < c {
+			return false
+		}
+		table ^= 1 << uint(c-'a')
+	}
+
+	for i := 0; i < len(str2); i++ {
+		c := str2[i]
+		if c < 'a' && 'z' < c {
+			return false
+		}
+		table ^= 1 << uint(c-'a')
+	}
+
+	if table == 0 {
+		return true
+	}
+	return false
+}
