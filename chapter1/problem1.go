@@ -1,4 +1,4 @@
-package main
+package chapter1
 
 // IsUnique checks given string contains only unique characters
 // Time complexity O(n)

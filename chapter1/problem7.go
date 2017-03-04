@@ -1,4 +1,4 @@
-package main
+package chapter1
 
 // RotateMatrix rotates n x n matrix of int
 func RotateMatrix(m [][]int) {

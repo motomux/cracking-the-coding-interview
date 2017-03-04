@@ -1,4 +1,4 @@
-package main
+package chapter1
 
 // CheckPermutation checks given strings are permutation
 // Time complexity O(n)
