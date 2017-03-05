@@ -21,3 +21,20 @@ func CheckPalindromePermutation(str string) bool {
 	}
 	return true
 }
+
+// CheckPalindromePermutation2 checks if given string is palindrome permutation
+// It can check only string with lowers
+// Time complexity O(n)
+// Space complexity O(1)
+func CheckPalindromePermutation2(str string) bool {
+	table := 0
+
+	for i := 0; i < len(str); i++ {
+		table ^= 1 << uint(str[i]-'a')
+	}
+
+	if (table-1)&table == 0 {
+		return true
+	}
+	return false
+}
