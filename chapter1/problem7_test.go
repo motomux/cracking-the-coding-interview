@@ -2,30 +2,28 @@ package chapter1
 
 import (
 	"reflect"
+	"strconv"
 	"testing"
 )
 
 func TestRotateMatrix(t *testing.T) {
-	tests := map[string]struct {
+	tests := []struct {
 		in   [][]int
 		post [][]int
 	}{
-		"should not panic when nil slice is give": {
+		{
 			in:   [][]int(nil),
 			post: [][]int(nil),
 		},
-
-		"should not panic when empty slice is give": {
+		{
 			in:   [][]int{},
 			post: [][]int{},
 		},
-
-		"should rotate 1x1 matrix": {
+		{
 			in:   [][]int{[]int{0}},
 			post: [][]int{[]int{0}},
 		},
-
-		"should rotate 2x2 matrix": {
+		{
 			in: [][]int{
 				[]int{1, 2},
 				[]int{3, 4},
@@ -35,8 +33,7 @@ func TestRotateMatrix(t *testing.T) {
 				[]int{4, 2},
 			},
 		},
-
-		"should rotate 3x3 matrix": {
+		{
 			in: [][]int{
 				[]int{1, 2, 3},
 				[]int{4, 5, 6},
@@ -48,8 +45,7 @@ func TestRotateMatrix(t *testing.T) {
 				[]int{9, 6, 3},
 			},
 		},
-
-		"should rotate 4x4 matrix": {
+		{
 			in: [][]int{
 				[]int{1, 2, 3, 4},
 				[]int{5, 6, 7, 8},
@@ -63,8 +59,7 @@ func TestRotateMatrix(t *testing.T) {
 				[]int{16, 12, 8, 4},
 			},
 		},
-
-		"should rotate 5x5 matrix": {
+		{
 			in: [][]int{
 				[]int{1, 2, 3, 4, 5},
 				[]int{6, 7, 8, 9, 10},
@@ -82,8 +77,8 @@ func TestRotateMatrix(t *testing.T) {
 		},
 	}
 
-	for k, test := range tests {
-		t.Run(k, func(t *testing.T) {
+	for i, test := range tests {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			RotateMatrix(test.in)
 			if !reflect.DeepEqual(test.in, test.post) {
 				t.Errorf("actual=%+v expected=%+v", test.in, test.post)

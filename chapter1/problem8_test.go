@@ -2,15 +2,16 @@ package chapter1
 
 import (
 	"reflect"
+	"strconv"
 	"testing"
 )
 
 func TestZeroMatrix(t *testing.T) {
-	tests := map[string]struct {
+	tests := []struct {
 		in   [][]int
 		post [][]int
 	}{
-		"should set 0s if input has 0": {
+		{
 			in: [][]int{
 				[]int{1, 8, 6, 5, 0},
 				[]int{0, 5, 8, 2, 2},
@@ -26,8 +27,7 @@ func TestZeroMatrix(t *testing.T) {
 				[]int{0, 4, 3, 3, 0},
 			},
 		},
-
-		"should not set if input doesn't have 0": {
+		{
 			in: [][]int{
 				[]int{1, 8, 6, 5, 1},
 				[]int{1, 5, 8, 2, 2},
@@ -43,15 +43,14 @@ func TestZeroMatrix(t *testing.T) {
 				[]int{8, 4, 3, 3, 1},
 			},
 		},
-
-		"should not set if input is empty": {
+		{
 			in:   [][]int{},
 			post: [][]int{},
 		},
 	}
 
-	for k, test := range tests {
-		t.Run(k, func(t *testing.T) {
+	for i, test := range tests {
+		t.Run(strconv.Itoa(i), func(t *testing.T) {
 			ZeroMatrix(test.in)
 			if !reflect.DeepEqual(test.in, test.post) {
 				t.Errorf("actual=%v expected=%v", test.in, test.post)
